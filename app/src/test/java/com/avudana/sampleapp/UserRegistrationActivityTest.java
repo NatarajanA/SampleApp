@@ -1,20 +1,29 @@
 package com.avudana.sampleapp;
 
+import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.avudana.sampleapp.activities.LoginActivity;
 import com.avudana.sampleapp.activities.UserRegistrationActivity;
+import com.avudana.sampleapp.db.UserDBDao;
+import com.avudana.sampleapp.models.User;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
+import org.mockito.Mockito;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.annotation.Config;
+import org.robolectric.shadows.ShadowActivity;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static org.assertj.android.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+import static org.robolectric.Shadows.shadowOf;
 
 /**
  * Created by avudana on 22/07/2015.
@@ -88,4 +97,23 @@ public class UserRegistrationActivityTest {
         etConfirmPassword.setText("password");
         btnRegister.performClick();
     }
+
+    @Test
+    public void userRegistrationTest(){
+
+        UserDBDao userDBDao = Mockito.mock(UserDBDao.class);
+        when(userDBDao.insertUser(Matchers.any(User.class))).thenReturn(1L);
+
+        etUserName.setText("username");
+        etPhoneNo.setText("phone no");
+        etPassword.setText("password");
+        etConfirmPassword.setText("password");
+        assertThat(btnRegister).isEnabled();
+        btnRegister.performClick();
+
+        ShadowActivity shadowActivity = shadowOf(userRegistrationActivity);
+        Intent intent = shadowActivity.getNextStartedActivity();
+        assertEquals(LoginActivity.class.getName(), intent.getComponent().getClassName());
+    }
+
 }
