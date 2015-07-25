@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Authentication Sample</string>
+
+    <!-- Login Screen -->
+    <string name="login">Login</string>
+    <string name="user_name">Username</string>
+    <string name="password">Password</string>
+    <string name="new_user">New User?</string>
+
+    <!-- Registration Screen -->
+    <string name="user_registration">User Registration</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="phone_no">Phone no</string>
+    <string name="register">Register</string>
+
+    <!-- User Details Screen -->
+    <string name="user_details">User Details</string>
+
+    <!-- Success Messages -->
+    <string name="user_registration_successful">User has been registered</string>
+
+    <!-- Error Messages -->
+    <string name="user_registration_cancelled">User registration cancelled</string>
+    <string name="error_invalid_credentials">Incorrect credentials. Please check!</string>
+    <string name="error_user_already_exists">User name already exists!</string>
+    <string name="error_password_does_not_match">Password doesn\'t match!</string>
+
+</resources>
